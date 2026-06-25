@@ -1,0 +1,21 @@
+[
+  {
+    "id_produk": "GMS-B-SG3",
+    "kategori": "Gamis",
+    "nama_model": "Gamis B Segitiga",
+    "harga_grosir": 135000,
+    "gambar_utama": "https://i.imgur.com/contoh_utama.jpg",
+    "daftar_varian": [
+      {
+        "warna": "Mint Madina",
+        "stok": 150,
+        "foto": "https://i.imgur.com/foto_segitiga_mint.jpg"
+      },
+      {
+        "warna": "Pebble Grey",
+        "stok": 120,
+        "foto": "https://i.imgur.com/foto_segitiga_grey.jpg"
+      }
+    ]
+  }
+]
