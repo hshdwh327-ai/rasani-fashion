@@ -1,18 +1,18 @@
 [
   {
     "id_produk": "GMS-B-SG3",
-    "kategori": "Gamis",
-    "nama_model": "Gamis B Segitiga",
+    "kategori": "Aini midi",
+    "nama_model": "ular",
     "harga_grosir": 135000,
-    "gambar_utama": "https://i.imgur.com/contoh_utama.jpg",
+    "gambar_utama": "https://imgur.com/a/XQ6D9Kb",
     "daftar_varian": [
       {
         "warna": "Mint Madina",
         "stok": 150,
-        "foto": "https://i.imgur.com/foto_segitiga_mint.jpg"
+        "foto": "https://imgur.com/a/WZ7nOWh"
       },
       {
-        "warna": "Pebble Grey",
+        "warna": "navy",
         "stok": 120,
         "foto": "https://i.imgur.com/foto_segitiga_grey.jpg"
       }
