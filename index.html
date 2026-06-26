@@ -1,99 +1,8 @@
-<!DOCTYPE html>
-<html lang="id" data-theme="lofi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Grosir - Soreang Modest</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-stone-50 text-zinc-900 font-sans min-h-screen">
-
-    <!-- Navigasi -->
-    <header class="border-b border-stone-200 bg-white sticky top-0 z-40 shadow-sm">
-        <div class="navbar max-w-6xl mx-auto px-4 lg:px-8 justify-between">
-            <a class="text-xl font-semibold tracking-widest uppercase text-zinc-900">SOREANG MODEST</a>
-            <div class="flex gap-6">
-                <a href="index.html" class="text-sm font-medium underline underline-offset-4 decoration-2 decoration-zinc-900">Katalog Stok</a>
-                <a href="pasar.html" class="text-sm font-medium text-stone-400 hover:text-zinc-900 transition-colors">Modul Pasar</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Header & Fitur Cari -->
-    <main class="max-w-6xl mx-auto px-4 lg:px-8 py-10">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
-            <div>
-                <h1 class="text-3xl font-light tracking-wide mb-2 text-zinc-900">Daftar Model Konveksi</h1>
-                <p class="text-sm text-stone-500">Tekan pada baris produk untuk menampilkan foto sampel pakaian.</p>
-            </div>
-            
-            <div class="w-full md:w-80 relative">
-                <input type="text" id="kolom-pencarian" placeholder="Cari berdasarkan model atau kategori..." 
-                       class="input input-bordered w-full rounded-none bg-white border-stone-300 text-sm focus:outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 transition-all px-4 pr-10" />
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-3 top-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </div>
-        </div>
-
-        <!-- Tabel Minimalis Profesional -->
-        <div class="overflow-x-auto border border-stone-200 bg-white shadow-sm">
-            <table class="table w-full text-sm">
-                <thead class="bg-stone-100 text-stone-500 border-b border-stone-200 uppercase tracking-widest text-[10px]">
-                    <tr>
-                        <th class="font-semibold py-4 px-5">Kategori</th>
-                        <th class="font-semibold py-4 px-5">Nama Model</th>
-                        <th class="font-semibold py-4 px-5 text-center">Ukuran Standar</th>
-                        <th class="font-semibold py-4 px-5 text-center">Jumlah Varian Warna</th>
-                        <th class="font-semibold py-4 px-5 text-right">Harga Grosir</th>
-                    </tr>
-                </thead>
-                <tbody id="katalog-list">
-                    <tr>
-                        <td colspan="5" class="text-center py-12 text-stone-400">
-                            <span class="loading loading-spinner loading-md"></span><br>Memuat daftar model...
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
-
-    <!-- Modal Pop-Up Foto Tunggal -->
-    <dialog id="modal_produk" class="modal modal-bottom sm:modal-middle backdrop-blur-sm">
-        <div class="modal-box rounded-none bg-white p-0 max-w-sm border border-stone-200 shadow-2xl">
-            <form method="dialog">
-                <button class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3 bg-white/50 text-zinc-900 hover:bg-white backdrop-blur-md border-none z-10">✕</button>
-            </form>
-
-            <figure class="w-full relative bg-stone-100 aspect-[3/4]">
-                <img id="modal-foto" src="" alt="Foto Sampel" class="w-full h-full object-cover">
-            </figure>
-
-            <div class="p-6">
-                <p id="modal-kategori" class="text-[10px] text-stone-400 uppercase tracking-widest mb-1 font-semibold"></p>
-                <h3 id="modal-nama" class="text-xl font-normal text-zinc-900 leading-tight mb-2"></h3>
-                <p class="text-xs text-stone-500">Total ketersediaan: <span id="modal-warna" class="font-medium text-zinc-800"></span> variasi warna</p>
-                
-                <div class="flex justify-between items-center mt-6 pt-4 border-t border-stone-100">
-                    <div>
-                        <p class="text-[10px] uppercase text-stone-400 tracking-wider font-semibold mb-1">Harga Grosir</p>
-                        <p id="modal-harga" class="text-lg font-semibold text-zinc-900"></p>
-                    </div>
-                    <a id="modal-wa" href="#" target="_blank" class="btn bg-zinc-900 text-zinc-50 hover:bg-zinc-800 rounded-none border-none text-[11px] px-6 uppercase tracking-wider font-medium shadow-md">
-                        Tanya Admin via WA
-                    </a>
-                </div>
-            </div>
-        </div>
-        <form method="dialog" class="modal-backdrop"><button>tutup</button></form>
-    </dialog>
 
     <script>
         let dataBukuInduk = [];
 
-        // Logika pembacaan format JSON baru yang ringkas
+        // Fungsi mengambil data JSON
         async function muatDataKatalog() {
             try {
                 const respon = await fetch('data/inventory.json');
@@ -108,6 +17,7 @@
             }
         }
 
+        // Fungsi menampilkan data ke tabel
         function renderTabel(data) {
             const tbody = document.getElementById('katalog-list');
             tbody.innerHTML = '';
@@ -119,6 +29,12 @@
 
             data.forEach(item => {
                 const teksUkuran = item.kategori.toLowerCase() === 'jumbo' ? 'XXL' : 'Dewasa (Normal/XL)';
+                
+                // RUMUS STOK OTOMATIS: Jumlah Warna dikali 50 pcs per warna default
+                const totalStokOtomatis = item.warna * 50;
+                
+                // Warna lencana (badge) otomatis merah kalau stok kosong/sedikit
+                const warnaBadgeStok = totalStokOtomatis < 30 ? 'bg-red-50 text-red-700 border-red-200' : 'bg-stone-50 text-zinc-700 border-stone-200';
 
                 const barisHtml = `
                     <tr class="hover:bg-stone-50 cursor-pointer border-b border-stone-100 transition-colors group" 
@@ -126,9 +42,12 @@
                         <td class="px-5 text-stone-500 py-4">${item.kategori}</td>
                         <td class="px-5 font-medium text-zinc-900 group-hover:text-zinc-600 transition-colors py-4">${item.nama_model}</td>
                         <td class="px-5 text-center text-stone-600 font-mono text-xs py-4">${teksUkuran}</td>
-                        <td class="px-5 text-center py-4">
-                            <span class="badge bg-stone-50 text-zinc-700 border-stone-200 rounded-none border text-[10px] px-2.5 py-3 font-semibold">
+                        <td class="px-5 text-center py-4 flex justify-center gap-2">
+                            <span class="badge bg-stone-50 text-stone-600 border-stone-200 rounded-none border text-[10px] px-2 py-3">
                                 ${item.warna} Warna
+                            </span>
+                            <span class="badge ${warnaBadgeStok} rounded-none border text-[10px] px-2 py-3 font-semibold">
+                                Stok: ${totalStokOtomatis} Pcs
                             </span>
                         </td>
                         <td class="px-5 text-right font-medium text-zinc-900 tracking-wide py-4">
@@ -140,6 +59,7 @@
             });
         }
 
+        // Fungsi pencarian real-time
         document.getElementById('kolom-pencarian').addEventListener('input', (e) => {
             const kataKunci = e.target.value.toLowerCase();
             const dataTerfilter = dataBukuInduk.filter(item => {
@@ -149,9 +69,12 @@
             renderTabel(dataTerfilter);
         });
 
+        // Fungsi membuka Pop-up foto
         window.bukaDetailProduk = function(idProduk) {
             const item = dataBukuInduk.find(x => x.id_produk === idProduk);
             if (!item) return;
+            
+            const totalStokOtomatis = item.warna * 50;
             
             document.getElementById('modal-kategori').innerText = item.kategori;
             document.getElementById('modal-nama').innerText = item.nama_model;
@@ -159,7 +82,7 @@
             document.getElementById('modal-harga').innerText = 'Rp ' + item.harga_grosir.toLocaleString('id-ID');
             document.getElementById('modal-foto').src = item.foto;
             
-            const teksWa = `Halo Admin Soreang Modest, saya mau tanya grosir untuk model *${item.nama_model}* (${item.warna} pilihan warna). Apakah siap kirim?`;
+            const teksWa = `Halo Admin Soreang Modest, saya mau tanya grosir untuk model *${item.nama_model}* dengan total stok tersedia *${totalStokOtomatis} Pcs*. Apakah siap kirim hari ini?`;
             document.getElementById('modal-wa').href = `https://wa.me/628123456789?text=${encodeURIComponent(teksWa)}`;
             
             document.getElementById('modal_produk').showModal();
@@ -167,5 +90,3 @@
 
         document.addEventListener('DOMContentLoaded', muatDataKatalog);
     </script>
-</body>
-</html>
