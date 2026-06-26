@@ -3,101 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul Kalkulator Operasional Pasar - Soreang Modest</title>
+    <title>Kalkulator Lapak - Rasani Fashion</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>.text-emas { color: #D4AF37; }.border-emas { border-color: #D4AF37; }.bg-emas { background-color: #D4AF37; } </style>
 </head>
 <body class="bg-stone-50 text-zinc-900 font-sans min-h-screen">
+    
+    <div class="flex justify-center gap-10 py-6 bg-black text-white border-b border-emas text-xs md:text-sm font-medium uppercase tracking-widest sticky top-0 z-50 shadow-md">
+        <a href="index.html" class="text-stone-400 hover:text-white transition-colors pb-1">Katalog Produk</a>
+        <a href="pasar.html" class="text-emas border-b-2 border-emas pb-1">Modul Kalkulator Pasar</a>
+    </div>
 
-    <header class="border-b border-stone-200 bg-stone-50 sticky top-0 z-50">
-        <div class="navbar max-w-7xl mx-auto px-4 justify-between">
-            <a class="text-xl font-semibold tracking-widest uppercase">SOREANG MODEST</a>
-            <div class="flex gap-4">
-                <a href="index.html" class="text-sm font-medium text-stone-500 hover:text-zinc-900">Katalog</a>
-                <a href="pasar.html" class="text-sm font-medium underline">Modul Pasar</a>
-            </div>
+    <main class="max-w-md mx-auto px-4 py-12">
+        <div class="text-center mb-10">
+            <h1 class="text-2xl font-serif uppercase tracking-widest text-black">Logistik Lapak Keliling</h1>
+            <p class="text-[10px] text-stone-500 uppercase tracking-widest mt-2">Pencatatan Tanpa Internet (Senin/Kamis)</p>
         </div>
-    </header>
-
-    <main class="max-w-md mx-auto px-4 py-8">
-        <div class="mb-6">
-            <h1 class="text-xl font-medium tracking-wide">Kalkulator Logistik Lapak</h1>
-            <p class="text-xs text-stone-500">Pencatatan data tak-terikat internet khusus hari pasaran Senin & Kamis.</p>
-        </div>
-
-        <div class="bg-stone-50 border border-stone-200 p-4 mb-6">
-            <h2 class="text-xs uppercase tracking-widest font-bold text-stone-500 mb-3">1. Registrasi Muatan Pagi</h2>
+        
+        <div class="bg-white border border-stone-200 p-6 mb-6 shadow-sm">
+            <p class="text-[10px] uppercase tracking-widest text-stone-400 mb-3 font-semibold">1. Kunci Muatan Pagi (Bawa Berapa?)</p>
             <div class="flex gap-2">
-                <input type="number" id="input-bawa" placeholder="Contoh: 100" class="input input-bordered w-full rounded-none bg-stone-50 text-zinc-900 border-stone-300 text-sm focus:outline-none" />
-                <button onclick="setMuatanAwal()" class="btn bg-zinc-900 text-zinc-50 hover:bg-zinc-800 rounded-none border-none text-xs px-6">Kunci</button>
+                <input type="number" id="input-bawa" placeholder="Contoh: 150" class="input input-bordered w-full rounded-none bg-stone-50 focus:border-black" />
+                <button onclick="setBawa()" class="btn bg-black text-emas rounded-none border-none hover:bg-zinc-800 uppercase tracking-widest text-xs px-6">Set</button>
             </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 mb-6">
-            <div class="border border-stone-200 p-4 bg-stone-50 text-center">
-                <p class="text-[10px] uppercase tracking-widest text-stone-400">Total Bawa</p>
-                <p id="display-bawa" class="text-3xl font-light text-zinc-900 mt-1">0</p>
+        <div class="grid grid-cols-2 gap-4 mb-6 text-center">
+            <div class="border border-stone-200 bg-white p-6 shadow-sm">
+                <p class="text-[10px] uppercase tracking-widest text-stone-400 font-semibold">Total Dibawa</p>
+                <p id="t-bawa" class="text-4xl font-light mt-2 text-black">0</p>
             </div>
-            <div class="border border-stone-200 p-4 bg-stone-50 text-center">
-                <p class="text-[10px] uppercase tracking-widest text-stone-400">Sisa Di Lapak</p>
-                <p id="display-sisa" class="text-3xl font-light text-zinc-900 mt-1">0</p>
+            <div class="border border-stone-200 bg-white p-6 shadow-sm">
+                <p class="text-[10px] uppercase tracking-widest text-stone-400 font-semibold">Sisa di Lapak</p>
+                <p id="t-sisa" class="text-4xl font-light mt-2 text-black">0</p>
             </div>
         </div>
 
-        <div class="border border-stone-200 p-6 bg-stone-50 text-center mb-6">
-            <p class="text-[10px] uppercase tracking-widest text-stone-400 mb-2">Total Kuantitas Terjual</p>
-            <p id="display-terjual" class="text-6xl font-extralight text-zinc-900 mb-6">0</p>
-            
+        <div class="border border-emas bg-black text-white p-8 text-center mb-8 shadow-xl">
+            <p class="text-[11px] text-emas uppercase tracking-widest mb-3 font-semibold">Kuantitas Terjual</p>
+            <p id="t-terjual" class="text-7xl font-extralight mb-8 font-serif">0</p>
             <div class="flex gap-4 justify-center">
-                <button onclick="hitungPenjualan(-1)" class="btn btn-outline border-stone-300 hover:bg-stone-100 hover:text-zinc-900 rounded-none w-20 text-xl font-light">-</button>
-                <button onclick="hitungPenjualan(1)" class="btn bg-zinc-900 text-zinc-50 hover:bg-zinc-800 rounded-none w-32 text-xl font-light border-none">+</button>
+                <button onclick="hitung(-1)" class="btn btn-outline text-white border-white hover:bg-white hover:text-black rounded-none w-20 text-2xl font-light">-</button>
+                <button onclick="hitung(1)" class="btn bg-emas text-black border-none hover:bg-white rounded-none w-32 text-2xl font-light shadow-[0_0_15px_rgba(212,175,55,0.4)]">+</button>
             </div>
         </div>
 
-        <button onclick="bersihkanSesiPasar()" class="btn btn-sm btn-block btn-outline border-stone-200 text-red-700 hover:bg-red-50 hover:text-red-800 rounded-none text-[11px] tracking-wider uppercase font-normal">
-            Reset Data & Bersihkan Sesi Memori
+        <button onclick="resetData()" class="btn btn-ghost w-full text-[10px] text-red-600 uppercase tracking-widest underline rounded-none hover:bg-red-50">
+            Hapus Semua Catatan Hari Ini
         </button>
     </main>
 
     <script>
-        // Membaca sesi awal dari penyimpanan fisik perangkat lokal
-        let barangBawaan = parseInt(localStorage.getItem('bawa_pasar')) || 0;
-        let barangTerjual = parseInt(localStorage.getItem('terjual_pasar')) || 0;
+        // Menggunakan LocalStorage agar data aman walau web keluar (pseudo-offline)
+        let bawa = parseInt(localStorage.getItem('rsn_bawa')) || 0;
+        let terjual = parseInt(localStorage.getItem('rsn_terjual')) || 0;
 
-        function perbaruiTampilan() {
-            document.getElementById('display-bawa').innerText = barangBawaan;
-            document.getElementById('display-terjual').innerText = barangTerjual;
-            document.getElementById('display-sisa').innerText = (barangBawaan - barangTerjual);
+        function updateUI() {
+            document.getElementById('t-bawa').innerText = bawa;
+            document.getElementById('t-terjual').innerText = terjual;
+            document.getElementById('t-sisa').innerText = (bawa - terjual);
         }
 
-        function setMuatanAwal() {
-            const jumlah = parseInt(document.getElementById('input-bawa').value);
-            if (isNaN(jumlah) || jumlah < 0) return alert('Masukkan jumlah muatan barang valid!');
-            
-            barangBawaan = jumlah;
-            localStorage.setItem('bawa_pasar', barangBawaan);
-            document.getElementById('input-bawa').value = '';
-            perbaruiTampilan();
-        }
-
-        function hitungPenjualan(nilai) {
-            if (barangTerjual + nilai < 0) return;
-            barangTerjual += nilai;
-            localStorage.setItem('terjual_pasar', barangTerjual);
-            perbaruiTampilan();
-        }
-
-        function bersihkanSesiPasar() {
-            if (confirm('Bersihkan seluruh kalkulasi rekapitulasi pasar hari ini?')) {
-                localStorage.clear();
-                barangBawaan = 0;
-                barangTerjual = 0;
-                perbaruiTampilan();
+        function setBawa() {
+            let inputVal = parseInt(document.getElementById('input-bawa').value);
+            if(inputVal >= 0) {
+                bawa = inputVal;
+                localStorage.setItem('rsn_bawa', bawa);
+                document.getElementById('input-bawa').value = '';
+                updateUI();
             }
         }
 
-        // Inisialisasi data pemulihan otomatis saat tab tidak sengaja tertutup krisis baterai
-        document.addEventListener('DOMContentLoaded', perbaruiTampilan);
+        function hitung(val) {
+            if(terjual + val < 0) return; // Mencegah angka terjual minus
+            terjual += val;
+            localStorage.setItem('rsn_terjual', terjual);
+            updateUI();
+        }
+
+        function resetData() {
+            if(confirm('Apakah Anda yakin ingin mereset seluruh data pasaran hari ini?')) {
+                localStorage.clear();
+                bawa = 0; terjual = 0;
+                updateUI();
+            }
+        }
+        
+        // Pulihkan tampilan otomatis
+        updateUI();
     </script>
 </body>
 </html>
