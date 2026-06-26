@@ -1,21 +1,30 @@
 [
-  {
-    "id_produk": "GMS-B-SG3",
-    "kategori": "Aini midi",
-    "nama_model": "ular",
-    "harga_grosir": 135000,
-    "gambar_utama": "https://i.ibb.co.com/Dfkp47dN/Chat-GPT-Image-26-Jun-2026-00-05-29.png",
-    "daftar_varian": [
-      {
-        "warna": "Mint Madina",
-        "stok": 150,
-        "foto": "https://i.ibb.co.com/Dfkp47dN/Chat-GPT-Image-26-Jun-2026-00-05-29.png"
-      },
-      {
-        "warna": "navy",
-        "stok": 120,
-        "foto": "https://i.ibb.co.com/Dfkp47dN/Chat-GPT-Image-26-Jun-2026-00-05-29.png"
-      }
-    ]
-  }
+  { "id_produk": "MIDI-01A", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 1 Varian A", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-01B", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 1 Varian B", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-02A", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 2 Varian A", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-02B", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 2 Varian B", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-03A", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 3 Varian A", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-03B", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 3 Varian B", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-04A", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 4 Varian A", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-04B", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 4 Varian B", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-05A", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 5 Varian A", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-05B", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 5 Varian B", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-06A", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 6 Varian A", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-06B", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 6 Varian B", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-07A", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 7 Varian A", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "MIDI-07B", "kategori": "Aini Midi", "nama_model": "Aini Midi Model 7 Varian B", "harga_grosir": 125000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "JMB-01", "kategori": "Jumbo", "nama_model": "Jumbo Abaya Model 1", "harga_grosir": 150000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "JMB-02", "kategori": "Jumbo", "nama_model": "Jumbo Abaya Model 2", "harga_grosir": 150000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "JMB-03", "kategori": "Jumbo", "nama_model": "Jumbo Abaya Model 3", "harga_grosir": 150000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "JMB-04", "kategori": "Jumbo", "nama_model": "Jumbo Abaya Model 4", "harga_grosir": 150000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "JMB-05", "kategori": "Jumbo", "nama_model": "Jumbo Abaya Model 5", "harga_grosir": 150000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "JMB-06", "kategori": "Jumbo", "nama_model": "Jumbo Abaya Model 6", "harga_grosir": 150000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "GMS-01A", "kategori": "Gamis", "nama_model": "Gamis Eksklusif Model 1 Varian A", "harga_grosir": 140000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "GMS-01B", "kategori": "Gamis", "nama_model": "Gamis Eksklusif Model 1 Varian B", "harga_grosir": 140000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "GMS-02A", "kategori": "Gamis", "nama_model": "Gamis Eksklusif Model 2 Varian A", "harga_grosir": 140000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "GMS-02B", "kategori": "Gamis", "nama_model": "Gamis Eksklusif Model 2 Varian B", "harga_grosir": 140000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "GMS-03A", "kategori": "Gamis", "nama_model": "Gamis Eksklusif Model 3 Varian A", "harga_grosir": 140000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "GMS-03B", "kategori": "Gamis", "nama_model": "Gamis Eksklusif Model 3 Varian B", "harga_grosir": 140000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "GMS-04A", "kategori": "Gamis", "nama_model": "Gamis Eksklusif Model 4 Varian A", "harga_grosir": 140000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "GMS-04B", "kategori": "Gamis", "nama_model": "Gamis Eksklusif Model 4 Varian B", "harga_grosir": 140000, "warna": 4, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" }
 ]
