@@ -90,10 +90,9 @@
         <form method="dialog" class="modal-backdrop"><button>tutup</button></form>
     </dialog>
 
-    <script>
+        <script>
         let dataBukuInduk = [];
 
-        // Fungsi mengambil data JSON
         async function muatDataKatalog() {
             try {
                 const respon = await fetch('data/inventory.json');
@@ -108,7 +107,6 @@
             }
         }
 
-        // Fungsi menampilkan data ke tabel
         function renderTabel(data) {
             const tbody = document.getElementById('katalog-list');
             tbody.innerHTML = '';
@@ -119,13 +117,13 @@
             }
 
             data.forEach(item => {
-                const teksUkuran = item.kategori.toLowerCase() === 'jumbo' ? 'XXL' : 'Dewasa (Normal/XL)';
-                
-                // RUMUS STOK OTOMATIS: Jumlah Warna dikali 50 pcs per warna default
-                const totalStokOtomatis = item.warna * 50;
-                
-                // Warna lencana (badge) otomatis merah kalau stok kosong/sedikit
-                const warnaBadgeStok = totalStokOtomatis < 30 ? 'bg-red-50 text-red-700 border-red-200' : 'bg-stone-50 text-zinc-700 border-stone-200';
+                let teksUkuran = 'Dewasa (Normal/XL)';
+                if (item.kategori.toLowerCase() === 'jumbo') {
+                    teksUkuran = 'XXL';
+                }
+
+                // Menentukan warna badge peringatan jika stok menipis di bawah 40 pcs
+                const warnaBadgeStok = item.stok < 40 ? 'bg-red-50 text-red-700 border-red-200' : 'bg-stone-50 text-zinc-700 border-stone-200';
 
                 const barisHtml = `
                     <tr class="hover:bg-stone-50 cursor-pointer border-b border-stone-100 transition-colors group" 
@@ -137,8 +135,8 @@
                             <span class="badge bg-stone-50 text-stone-600 border-stone-200 rounded-none border text-[10px] px-2 py-3">
                                 ${item.warna} Warna
                             </span>
-                            <span class="badge ${warnaBadgeStok} rounded-none border text-[10px] px-2 py-3 font-semibold">
-                                Stok: ${totalStokOtomatis} Pcs
+                            <span class="badge ${warnaBadgeStok} rounded-none border text-[10px] px-2.5 py-3 font-semibold">
+                                Stok: ${item.stok} Pcs
                             </span>
                         </td>
                         <td class="px-5 text-right font-medium text-zinc-900 tracking-wide py-4">
@@ -150,7 +148,6 @@
             });
         }
 
-        // Fungsi pencarian real-time
         document.getElementById('kolom-pencarian').addEventListener('input', (e) => {
             const kataKunci = e.target.value.toLowerCase();
             const dataTerfilter = dataBukuInduk.filter(item => {
@@ -160,12 +157,9 @@
             renderTabel(dataTerfilter);
         });
 
-        // Fungsi membuka Pop-up foto
         window.bukaDetailProduk = function(idProduk) {
             const item = dataBukuInduk.find(x => x.id_produk === idProduk);
             if (!item) return;
-            
-            const totalStokOtomatis = item.warna * 50;
             
             document.getElementById('modal-kategori').innerText = item.kategori;
             document.getElementById('modal-nama').innerText = item.nama_model;
@@ -173,7 +167,7 @@
             document.getElementById('modal-harga').innerText = 'Rp ' + item.harga_grosir.toLocaleString('id-ID');
             document.getElementById('modal-foto').src = item.foto;
             
-            const teksWa = `Halo Admin Soreang Modest, saya mau tanya grosir untuk model *${item.nama_model}* dengan total stok tersedia *${totalStokOtomatis} Pcs*. Apakah siap kirim hari ini?`;
+            const teksWa = `Halo Admin Soreang Modest, saya mau tanya grosir untuk model *${item.nama_model}* dengan sisa stok gudang *${item.stok} Pcs*. Apakah siap kirim?`;
             document.getElementById('modal-wa').href = `https://wa.me/628123456789?text=${encodeURIComponent(teksWa)}`;
             
             document.getElementById('modal_produk').showModal();
@@ -181,5 +175,6 @@
 
         document.addEventListener('DOMContentLoaded', muatDataKatalog);
     </script>
+
 </body>
 </html>
