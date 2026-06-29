@@ -31,7 +31,7 @@
   { "id_produk": "AINN-04A", "kategori": "Ainun", "nama_model": "Ainun A Salur Belut (Default)", "harga_grosir": 135000, "warna": 4, "stok": 25, "foto": "https://files.catbox.moe/rscrk5.jpg" },
   { "id_produk": "AINN-05A", "kategori": "Ainun", "nama_model": "Ainun A Polkadot (Default)", "harga_grosir": 135000, "warna": 4, "stok": 38, "foto": "https://files.catbox.moe/l135lq.jpg" },
   { "id_produk": "AINB-01", "kategori": "Aini B", "nama_model": "Aini B Bunga Kecil", "harga_grosir": 130000, "warna": 4, "stok": 92, "foto": "https://files.catbox.moe/pb4ao9.jpg" },
-  { "id_produk": "AINB-02", "kategori": "Aini B", "nama_model": "Aini B Polos", "harga_grosir": 130000, "warna": 4, "stok": 133, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" }
-  { "id_produk": "AINB-03", "kategori": "Aini B", "nama_model": "Aini B salur kecil", "harga_grosir": 130000, "warna": 4, "stok": 33, "foto": "https://files.catbox.moe/zo2qyc.jpg" }
-  { "id_produk": "AINB-04", "kategori": "Aini B", "nama_model": "Aini B tangkai mawar", "harga_grosir": 130000, "warna": 4, "stok": 104, "foto": "https://files.catbox.moe/pwb8ip.jpg" }
+  { "id_produk": "AINB-02", "kategori": "Aini B", "nama_model": "Aini B Polos", "harga_grosir": 130000, "warna": 4, "stok": 133, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
+  { "id_produk": "AINB-03", "kategori": "Aini B", "nama_model": "Aini B salur kecil", "harga_grosir": 130000, "warna": 4, "stok": 33, "foto": "https://files.catbox.moe/zo2qyc.jpg" },
+  { "id_produk": "AINB-04", "kategori": "Aini B", "nama_model": "Aini B tangkai mawar", "harga_grosir": 130000, "warna": 4, "stok": 104, "foto": "https://files.catbox.moe/pwb8ip.jpg" },
 ]
