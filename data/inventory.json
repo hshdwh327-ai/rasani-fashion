@@ -27,8 +27,7 @@
   { "id_produk": "GMS-02A", "kategori": "Gamis", "nama_model": "Gamis A Pita Putus", "harga_grosir": 140000, "warna": 4, "stok": 19, "foto": "https://files.catbox.moe/d9pzhw.jpg" },
   { "id_produk": "GMS-06A", "kategori": "Gamis", "nama_model": "Gamis A bunga angin", "harga_grosir": 140000, "warna": 4, "stok": 28, "foto": "https://files.catbox.moe/p2rob1.jpg" },
   { "id_produk": "GMS-07A", "kategori": "Gamis", "nama_model": "Gamis A 2bunga kecil", "harga_grosir": 140000, "warna": 4, "stok": 58, "foto": "https://i.imgur.com/T48R9x3.png" },
-  { "id_produk": "GMS-01A", "kategori": "Gamis", "nama_model": "Gamis A bunga baris", "harga_grosir": 140000, "warna": 4, "stok": 87, "foto": "https://i.imgur.com/T48R9x3.png" },
-  
+  { "id_produk": "GMS-01A", "kategori": "Gamis", "nama_model": "Gamis A bunga baris", "harga_grosir": 140000, "warna": 4, "stok": 87, "foto": "https://i.imgur.com/sn6UJMK.png" },
   { "id_produk": "AINN-01A", "kategori": "Ainun", "nama_model": "Ainun A Pita Rantai (Default)", "harga_grosir": 135000, "warna": 37, "stok": 44, "foto": "https://files.catbox.moe/2f33g0.jpg" },
   { "id_produk": "AINN-02B", "kategori": "Ainun", "nama_model": "Ainun B Bunga Bangkai", "harga_grosir": 135000, "warna": 4, "stok": 74, "foto": "https://files.catbox.moe/lhpahm.jpg" },
   { "id_produk": "AINN-02A", "kategori": "Ainun", "nama_model": "Ainun A Bunga Bangkai", "harga_grosir": 135000, "warna": 4, "stok": 60, "foto": "https://files.catbox.moe/duh92s.jpg" },
