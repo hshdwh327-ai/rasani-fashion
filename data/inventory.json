@@ -21,7 +21,7 @@
   { "id_produk": "JMB-04", "kategori": "Jumbo", "nama_model": "Jumbo Lingkar sambung", "harga_grosir": 150000, "warna": 4, "stok": 0, "foto": "https://files.catbox.moe/m4q75r.jpg" },
   { "id_produk": "JMB-05", "kategori": "Jumbo", "nama_model": "Jumbo Mawar Salur", "harga_grosir": 150000, "warna": 4, "stok": 0, "foto": "https://files.catbox.moe/zv0ob9.jpg" },
   { "id_produk": "JMB-06", "kategori": "Jumbo", "nama_model": "Jumbo Tulang Rusuk", "harga_grosir": 150000, "warna": 4, "stok": 31, "foto": "https://files.catbox.moe/d4abie.jpg" },
-  { "id_produk": "JMB-07", "kategori": "Jumbo", "nama_model": "Jumbo Polos", "harga_grosir": 150000, "warna": 4, "stok": 200, "foto": "https://files.catbox.moe/hx1pr0.jpg" },
+  { "id_produk": "JMB-07", "kategori": "Jumbo", "nama_model": "Jumbo Polos", "harga_grosir": 150000, "warna": 4, "stok": 200, "foto": "https://knj" },
   { "id_produk": "GMS-01B", "kategori": "Gamis", "nama_model": "Gamis A Pita bulat", "harga_grosir": 140000, "warna": 4, "stok": 22, "foto": "https://i.imgur.com/BXDPQpJ.jpeg" },
   { "id_produk": "GMS-02B", "kategori": "Gamis", "nama_model": "Gamis B Salur putus", "harga_grosir": 140000, "warna": 4, "stok": 0, "foto": "https://files.catbox.moe/pgddhn.png" },
   { "id_produk": "GMS-02A", "kategori": "Gamis", "nama_model": "Gamis A Pita Putus", "harga_grosir": 140000, "warna": 4, "stok": 19, "foto": "https://files.catbox.moe/d9pzhw.jpg" },
