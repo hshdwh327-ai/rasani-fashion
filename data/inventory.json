@@ -1,11 +1,11 @@
 [
   { "id_produk": "MIDI-01", "kategori": "Aini Midi", "nama_model": "Aini Midi Motif Gajah Red Blue", "harga_grosir": 125000, "warna": 2, "stok": 54, "foto": "https://files.catbox.moe/akvhj8.jpg" },
-  { "id_produk": "MIDI-02", "kategori": "Aini Midi", "nama_model": "Aini Midi salur ori", "harga_grosir": 125000, "warna": 4, "stok": 20, "foto": "blob:https://i.imgur.com/FZqk8ez.png" },
+  { "id_produk": "MIDI-02", "kategori": "Aini Midi", "nama_model": "Aini Midi salur ori", "harga_grosir": 125000, "warna": 4, "stok": 20, "foto": "https://i.imgur.com/FZqk8ez.png" },
   { "id_produk": "MIDI-03", "kategori": "Aini Midi", "nama_model": "Aini Midi Ladang Bunga", "harga_grosir": 125000, "warna": 4, "stok": 100, "foto": "https://files.catbox.moe/rfzcwc.jpg" },
-  { "id_produk": "MIDI-04", "kategori": "Aini Midi", "nama_model": "Aini Midi polkadot donat", "harga_grosir": 125000, "warna": 4, "stok": 60,: "foto": "https://files.catbox.moe/ybq3t5.jpg" },
+  { "id_produk": "MIDI-04", "kategori": "Aini Midi", "nama_model": "Aini Midi polkadot donat", "harga_grosir": 125000, "warna": 4, "stok": 60, "foto": "https://files.catbox.moe/ybq3t5.jpg" },
   { "id_produk": "MIDI-05", "kategori": "Aini Midi", "nama_model": "Aini Midi Pita Luna", "harga_grosir": 125000, "warna": 4, "stok": 37, "foto": "https://files.catbox.moe/03vrm5.jpeg" },
   { "id_produk": "MIDI-06", "kategori": "Aini Midi", "nama_model": "Aini Midi Pita Etnik", "harga_grosir": 125000, "warna": 4, "stok": 20, "foto": "https://files.catbox.moe/rhyafc.jpg" },
-  { "id_produk": "MIDI-08", "kategori": "Aini Midi", "nama_model": "Aini Midi Polkadot 5 Warna", "harga_grosir": 125000, "warna": 5, "stok": 20, "foto": "https://filtbox.moe/xkeebp.jpg" },
+  { "id_produk": "MIDI-08", "kategori": "Aini Midi", "nama_model": "Aini Midi Polkadot 5 Warna", "harga_grosir": 125000, "warna": 5, "stok": 20, "foto": "https://fis.catbox.moe/xkeebp.jpg" },
   { "id_produk": "MIDI-09", "kategori": "Aini Midi", "nama_model": "Aini Midi 3 Batang Bunga", "harga_grosir": 125000, "warna": 4, "stok": 26, "foto": "https://files.catbox.moe/fttxev.jpg" },
   { "id_produk": "MIDI-10", "kategori": "Aini Midi", "nama_model": "Aini Midi Polkadot Kecil", "harga_grosir": 125000, "warna": 4, "stok": 25, "foto": "https://files.catbox.moe/xkeebp.jpg" },
   { "id_produk": "MIDI-11", "kategori": "Aini Midi", "nama_model": "Aini Midi Salur Kecil", "harga_grosir": 125000, "warna": 4, "stok": 15, "foto": "https://files.catbox.moe/23l3oo.jpg" },
@@ -43,5 +43,5 @@
   { "id_produk": "AINB-02", "kategori": "Aini B", "nama_model": "Aini B Polos", "harga_grosir": 130000, "warna": 4, "stok": 130, "foto": "https://img.freeimage.host/images/2024/09/14/CAJ4CHF.md.png" },
   { "id_produk": "AINB-03", "kategori": "Aini B", "nama_model": "Aini B salur kecil", "harga_grosir": 130000, "warna": 4, "stok": 25, "foto": "https://files.catbox.moe/zo2qyc.jpg" },
   { "id_produk": "AINB-04", "kategori": "Aini B", "nama_model": "Aini B pita rantai", "harga_grosir": 140000, "warna": 4, "stok": 35, "foto": "https://i.imgur.com/OaLpew0.jpeg" },
-  { "id_produk": "AINB-04", "kategori": "Aini B", "nama_model": "Aini B tangkai mawar", "harga_grosir": 130000, "warna": 4, "stok": 124, "foto": "https://files.catbox.moe/eo8lre.png" }
+  { "id_produk": "AINB-05", "kategori": "Aini B", "nama_model": "Aini B tangkai mawar", "harga_grosir": 130000, "warna": 4, "stok": 124, "foto": "https://files.catbox.moe/eo8lre.png" }
 ]
