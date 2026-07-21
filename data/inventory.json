@@ -23,7 +23,7 @@
   { "id_produk": "JMB-06", "kategori": "Jumbo", "nama_model": "Jumbo Tulang Rusuk", "harga_grosir": 150000, "warna": 4, "stok": 0, "foto": "https://files.catbox.moe/d4abie.jpg" },
   { "id_produk": "JMB-08", "kategori": "Jumbo", "nama_model": "Jumbo etnik bunga", "harga_grosir": 150000, "warna": 4, "stok": 89, "foto": "https://i.imgur.com/9kQhWB0.jpeg" },
   { "id_produk": "GMS-01B", "kategori": "Gamis", "nama_model": "Gamis A Pita bulat", "harga_grosir": 140000, "warna": 4, "stok": 1, "foto": "https://i.imgur.com/BXDPQpJ.jpeg" },
-  { "id_produk": "GMS-02B", "kategori": "Gamis", "nama_model": "Gamis B Salur putus", "harga_grosir": 140000, "warna": 4, "stok": 0, "foto": "https://files.catbox.moe/pgddhn.png" },
+  { "id_produk": "GMS-02B", "kategori": "Gamis", "nama_model": "Gamis B bunga titik", "harga_grosir": 140000, "warna": 4, "stok": 75, "foto": "https://i.imgur.com/ef38VJf.jpeg" },
   { "id_produk": "GMS-02A", "kategori": "Gamis", "nama_model": "Gamis A Pita Putus", "harga_grosir": 140000, "warna": 4, "stok": 14, "foto": "https://files.catbox.moe/d9pzhw.jpg" },
   { "id_produk": "GMS-03B", "kategori": "Gamis", "nama_model": "Gamis B Bunga gelombang", "harga_grosir": 140000, "warna": 4, "stok": 74, "foto": "https://files.catbox.moe/lxa76j.jpg" },
   { "id_produk": "GMS-04B", "kategori": "Gamis", "nama_model": "Gamis B pita 2d", "harga_grosir": 140000, "warna": 4, "stok": 81, "foto": "https://i.imgur.com/N3kYdaJ.jpeg" },
