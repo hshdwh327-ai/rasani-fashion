@@ -26,7 +26,7 @@
   { "id_produk": "GMS-01B", "kategori": "Gamis", "nama_model": "Gamis A salur belut", "harga_grosir": 140000, "warna": 4, "stok": 48, "foto": "https://i.imgur.com/x33igEF.jpeg" },
   { "id_produk": "GMS-02B", "kategori": "Gamis", "nama_model": "Gamis B kembang batik", "harga_grosir": 140000, "warna": 4, "stok": 38, "foto": "https://i.imgur.com/xaiJ8ex.jpeg" },
   { "id_produk": "GMS-02A", "kategori": "Gamis", "nama_model": "Gamis A Pita Putus", "harga_grosir": 140000, "warna": 4, "stok": 0, "foto": "https://files.catbox.moe/d9pzhw.jpg" },
-  { "id_produk": "GMS-03B", "kategori": "Gamis", "nama_model": "Gamis B Bunga salur rantai", "harga_grosir": 140000, "warna": 4, "stok": 106, "foto": "https://i.imgur.com/wXS97PB.jpeg" },
+  { "id_produk": "GMS-03B", "kategori": "Gamis", "nama_model": "Gamis B Bunga salur rantai", "harga_grosir": 140000, "warna": 4, "stok": 0, "foto": "https://i.imgur.com/wXS97PB.jpeg" },
   { "id_produk": "GMS-04B", "kategori": "Gamis", "nama_model": "Gamis B 2d pita", "harga_grosir": 140000, "warna": 4, "stok": 82, "foto": "https://i.imgur.com/HeQ8qHJ.jpeg" },
   { "id_produk": "GMS-05B", "kategori": "Gamis", "nama_model": "Gamis B Bunga pita salur", "harga_grosir": 140000, "warna": 4, "stok": 45, "foto": "https://i.imgur.com/900zyrS.jpeg" },
   { "id_produk": "GMS-06A", "kategori": "Gamis", "nama_model": "Gamis B bunga kembang", "harga_grosir": 140000, "warna": 4, "stok": 28, "foto": "https://i.imgur.com/DLzAU7c.jpeg" },
