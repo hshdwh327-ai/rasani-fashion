@@ -14,6 +14,9 @@
     .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .editor-only { display: none; }
+    body.is-editor .editor-only { display: block; }
+    body.is-editor .editor-toggle-actions { display: inline-flex; }
   </style>
 </head>
 <body class="min-h-screen bg-gradient-to-b from-rose-50 via-white to-stone-50 text-zinc-900">
@@ -36,6 +39,8 @@
       <div class="flex items-center gap-2">
         <button id="themeToggle" class="btn btn-sm rounded-full bg-white border-stone-200 shadow-sm">🌙</button>
         <a href="https://wa.me/628123456789" target="_blank" class="btn btn-sm rounded-full bg-zinc-900 text-white border-none shadow-md shadow-zinc-900/10">Chat Admin</a>
+        <button id="btnLogin" class="editor-only btn btn-sm rounded-full bg-white border-stone-200 shadow-sm">Editor</button>
+        <button id="btnLogout" class="editor-only btn btn-sm rounded-full bg-rose-50 text-rose-700 border-rose-200 shadow-sm">Keluar</button>
       </div>
     </div>
   </header>
@@ -138,6 +143,46 @@
           </div>
           <a id="modal-wa" href="#" target="_blank" class="btn rounded-full bg-zinc-900 text-white border-none">Tanya Admin</a>
         </div>
+        <div class="editor-only mt-6 border-t border-stone-100 pt-5">
+          <p class="text-xs uppercase tracking-[.25em] text-stone-400">Editor Stok</p>
+          <div class="mt-3 grid grid-cols-2 gap-3">
+            <div>
+              <label class="label text-xs text-stone-500">Stok</label>
+              <input id="edit-stok" type="number" class="input input-bordered rounded-2xl bg-stone-50 border-stone-200 w-full" />
+            </div>
+            <div>
+              <label class="label text-xs text-stone-500">Harga Grosir</label>
+              <input id="edit-harga" type="number" class="input input-bordered rounded-2xl bg-stone-50 border-stone-200 w-full" />
+            </div>
+          </div>
+          <div class="mt-3">
+            <label class="label text-xs text-stone-500">Foto Produk</label>
+            <input id="edit-foto" type="file" accept="image/*" class="file-input file-input-bordered rounded-2xl bg-stone-50 border-stone-200 w-full" />
+            <p class="text-xs text-stone-500 mt-2">Upload foto baru akan mengganti foto lama di VPS.</p>
+          </div>
+          <div class="mt-4 flex gap-3">
+            <button id="edit-save" class="btn rounded-full bg-zinc-900 text-white border-none">Simpan Perubahan</button>
+            <button id="edit-reset" class="btn rounded-full bg-stone-100 border-stone-200">Reset</button>
+          </div>
+          <p id="edit-status" class="text-xs mt-3 text-stone-500"></p>
+        </div>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button>close</button></form>
+  </dialog>
+
+  <dialog id="modal_login" class="modal modal-bottom sm:modal-middle backdrop-blur-sm">
+    <div class="modal-box rounded-[2rem] bg-white border border-stone-200 shadow-2xl max-w-sm">
+      <h3 class="text-lg font-sememibold">Editor Login</h3>
+      <p class="text-sm text-stone-500 mt-1">Masuk untuk mengedit stok, harga, dan foto.</p>
+      <div class="mt-4">
+        <label class="label text-xs text-stone-500">Password</label>
+        <input id="login-password" type="password" class="input input-bordered rounded-2xl bg-stone-50 border-stone-200 w-full" />
+      </div>
+      <p id="login-status" class="text-xs mt-2 text-stone-500"></p>
+      <div class="mt-5 flex gap-3">
+        <button id="login-submit" class="btn rounded-full bg-zinc-900 text-white border-none">Masuk</button>
+        <button id="login-close" class="btn rounded-full bg-stone-100 border-stone-200">Batal</button>
       </div>
     </div>
     <form method="dialog" class="modal-backdrop"><button>close</button></form>
@@ -146,6 +191,7 @@
   <script>
     const fmt = new Intl.NumberFormat('id-ID');
     const WA_NUMBER = '628123456789';
+    const API_BASE = './api';
     const state = {
       data: [],
       filtered: [],
@@ -153,6 +199,8 @@
       view: localStorage.getItem('rasani_view_mode') || 'grid',
       sort: localStorage.getItem('rasani_sort_mode') || 'terbaru',
       theme: localStorage.getItem('rasani_theme') || 'lofi',
+      editor: false,
+      currentId: null,
     };
 
     const el = (id) => document.getElementById(id);
@@ -221,75 +269,57 @@
 
     function renderGrid(data) {
       if (!data.length) {
-        return `
-          <div class="rounded-[2rem] bg-white border border-dashed border-stone-200 p-12 text-center">
-            <p class="text-2xl font-semibold">Produk tidak ditemukan</p>
-            <p class="text-stone-500 mt-2">Coba ubah kata pencarian atau reset filter.</p>
-          </div>`;
+        return `<div class="rounded-[2rem] bg-white border border-dashed border-stone-200 p-12 text-center"><p class="text-2xl font-semibold">Produk tidak ditemukan</p><p class="text-stone-500 mt-2">Coba ubah kata pencarian atau reset filter.</p></div>`;
       }
-      return `
-        <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
-          ${data.map(item => `
-            <article class="group rounded-[2rem] overflow-hidden bg-white border border-stone-100 soft-shadow hover:-translate-y-1 transition-all duration-300">
-              <div class="relative aspect-[4/5] bg-stone-100 overflow-hidden">
-                <img src="${item.foto}" alt="${item.nama_model}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/800x1000/f1f5f9/0f172a?text=Rasani+Fashion'" />
-                <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                  <span class="badge rounded-full bg-white/90 border-none text-zinc-900 shadow-sm">${item.kategori}</span>
-                  ${item.stok < 40 ? '<span class="badge rounded-full bg-rose-500 text-white border-none">Stok Tipis</span>' : ''}
-                </div>
-              </div>
-              <div class="p-5">
-                <div class="flex items-start justify-between gap-4">
-                  <div class="min-w-0">
-                    <h3 class="font-semibold text-lg leading-tight line-clamp-2">${item.nama_model}</h3>
-                    <p class="text-xs text-stone-500 mt-1">Kode ${item.id_produk} • ${item.warna} warna</p>
-                  </div>
-                  <p class="font-semibold text-zinc-900 whitespace-nowrap">${formatPrice(item.harga_grosir)}</p>
-                </div>
-                <div class="mt-4 flex items-center justify-between text-xs text-stone-500">
-                  <span>Stok ${item.stok} pcs</span>
-                  <span>${item.kategori}</span>
-                </div>
-                <div class="mt-4 grid grid-cols-2 gap-3">
-                  <button class="btn rounded-full bg-stone-100 border-none hover:bg-stone-200" onclick="bukaDetailProduk('${item.id_produk}')">Detail</button>
-                  <a class="btn rounded-full bg-zinc-900 text-white border-none" target="_blank" href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Halo Admin Rasani Fashion, saya ingin tanya model ' + item.nama_model + ' (' + item.id_produk + ').')}">WA</a>
-                </div>
-              </div>
-            </article>
-          `).join('')}
-        </div>`;
+      return `<div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">${data.map(item => `<article class="group rounded-[2rem] overflow-hidden bg-white border border-stone-100 soft-shadow hover:-translate-y-1 transition-all duration-300">
+        <div class="relative aspect-[4/5] bg-stone-100 overflow-hidden">
+          <img src="${item.foto}" alt="${item.nama_model}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/800x1000/f1f5f9/0f172a?text=Rasani+Fashion'" />
+          <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
+            <span class="badge rounded-full bg-white/90 border-none text-zinc-900 shadow-sm">${item.kategori}</span>
+            ${item.stok < 40 ? '<span class="badge rounded-full bg-rose-500 text-white border-none">Stok Tipis</span>' : ''}
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <h3 class="font-semibold text-lg leading-tight line-clamp-2">${item.nama_model}</h3>
+              <p class="text-xs text-stone-500 mt-1">Kode ${item.id_produk} • ${item.warna} warna</p>
+            </div>
+            <p class="font-semibold text-zinc-900 whitespace-nowrap">${formatPrice(item.harga_grosir)}</p>
+          </div>
+          <div class="mt-4 flex items-center justify-between text-xs text-stone-500">
+            <span>Stok ${item.stok} pcs</span>
+            <span>${item.kategori}</span>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <button class="btn rounded-full bg-stone-100 border-none hover:bg-stone-200 editor-toggle-actions" onclick="bukaDetailProduk('${item.id_produk}')">Detail</button>
+            <a class="btn rounded-full bg-zinc-900 text-white border-none" target="_blank" href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Halo Admin Rasani Fashion, saya ingin tanya model ' + item.nama_model + ' (' + item.id_produk + ').')}">WA</a>
+          </div>
+        </div>
+      </article>`).join('')}</div>`;
     }
 
     function renderList(data) {
       if (!data.length) {
-        return `
-          <div class="rounded-[2rem] bg-white border border-dashed border-stone-200 p-12 text-center">
-            <p class="text-2xl font-semibold">Produk tidak ditemukan</p>
-            <p class="text-stone-500 mt-2">Coba ubah kata pencarian atau reset filter.</p>
-          </div>`;
+        return `<div class="rounded-[2rem] bg-white border border-dashed border-stone-200 p-12 text-center"><p class="text-2xl font-semibold">Produk tidak ditemukan</p><p class="text-stone-500 mt-2">Coba ubah kata pencarian atau reset filter.</p></div>`;
       }
-      return `
-        <div class="space-y-3">
-          ${data.map(item => `
-            <article class="grid md:grid-cols-[140px_1fr_auto] gap-4 items-center rounded-[1.75rem] bg-white border border-stone-100 soft-shadow p-3 md:p-4 hover:border-zinc-200 transition cursor-pointer" onclick="bukaDetailProduk('${item.id_produk}')">
-              <div class="aspect-[4/5] md:aspect-square rounded-[1.25rem] overflow-hidden bg-stone-100">
-                <img src="${item.foto}" alt="${item.nama_model}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x1000/f1f5f9/0f172a?text=Rasani+Fashion'" />
-              </div>
-              <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-2">
-                  <span class="badge rounded-full bg-stone-100 border-none">${item.kategori}</span>
-                  ${item.stok < 40 ? '<span class="badge rounded-full bg-rose-500 text-white border-none">Stok Tipis</span>' : ''}
-                </div>
-                <h3 class="mt-2 text-lg md:text-xl font-semibold leading-tight">${item.nama_model}</h3>
-                <p class="mt-1 text-sm text-stone-500">Kode ${item.id_produk} • ${item.warna} warna • stok ${item.stok} pcs</p>
-              </div>
-              <div class="flex md:flex-col items-center md:items-end gap-3 md:gap-2 justify-between md:justify-center">
-                <p class="text-xl font-semibold whitespace-nowrap">${formatPrice(item.harga_grosir)}</p>
-                <a class="btn btn-sm rounded-full bg-zinc-900 text-white border-none" target="_blank" href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Halo Admin Rasani Fashion, saya ingin tanya model ' + item.nama_model + ' (' + item.id_produk + ').')}">WA</a>
-              </div>
-            </article>
-          `).join('')}
-        </div>`;
+      return `<div class="space-y-3">${data.map(item => `<article class="grid md:grid-cols-[140px_1fr_auto] gap-4 items-center rounded-[1.75rem] bg-white border border-stone-100 soft-shadow p-3 md:p-4 hover:border-zinc-200 transition cursor-pointer" onclick="bukaDetailProduk('${item.id_produk}')">
+        <div class="aspect-[4/5] md:aspect-square rounded-[1.25rem] overflow-hidden bg-stone-100">
+          <img src="${item.foto}" alt="${item.nama_model}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x1000/f1f5f9/0f172a?text=Rasani+Fashion'" />
+        </div>
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge rounded-full bg-stone-100 border-none">${item.kategori}</span>
+            ${item.stok < 40 ? '<span class="badge rounded-full bg-rose-500 text-white border-none">Stok Tipis</span>' : ''}
+          </div>
+          <h3 class="mt-2 text-lg md:text-xl font-semibold leading-tight">${item.nama_model}</h3>
+          <p class="mt-1 text-sm text-stone-500">Kode ${item.id_produk} • ${item.warna} warna • stok ${item.stok} pcs</p>
+        </div>
+        <div class="flex md:flex-col items-center md:items-end gap-3 md:gap-2 justify-between md:justify-center">
+          <p class="text-xl font-semibold whitespace-nowrap">${formatPrice(item.harga_grosir)}</p>
+          <a class="btn btn-sm rounded-full bg-zinc-900 text-white border-none" target="_blank" href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Halo Admin Rasani Fashion, saya ingin tanya model ' + item.nama_model + ' (' + item.id_produk + ').')}">WA</a>
+        </div>
+      </article>`).join('')}</div>`;
     }
 
     function render() {
@@ -298,9 +328,10 @@
       wrap.innerHTML = viewHtml;
     }
 
-    window.bukaDetailProduk = function(idProduk) {
+    window.bukaDetailProduk = async function(idProduk) {
       const item = state.data.find(x => x.id_produk === idProduk);
       if (!item) return;
+      state.currentId = idProduk;
       el('modal-kategori').innerText = item.kategori;
       el('modal-nama').innerText = item.nama_model;
       el('modal-stok').innerText = `Stok ${item.stok} pcs`;
@@ -309,8 +340,86 @@
       el('modal-harga').innerText = formatPrice(item.harga_grosir);
       el('modal-foto').src = item.foto;
       el('modal-wa').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Halo Admin Rasani Fashion, saya ingin tanya model ' + item.nama_model + ' (' + item.id_produk + ').')}`;
+      el('edit-stok').value = item.stok;
+      el('edit-harga').value = item.harga_grosir;
+      el('edit-status').innerText = '';
       el('modal_produk').showModal();
     };
+
+    async function api(path, options = {}) {
+      const res = await fetch(`${API_BASE}/${path}`, {
+        headers: { 'Content-Type': 'application/json' },
+        ...options,
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Gagal memanggil API');
+      return data;
+    }
+
+    async function loadData() {
+      const data = await api('inventory.php');
+      state.data = data.data || [];
+      renderStats();
+      renderChips();
+      state.filtered = getSorted(state.data);
+      viewToggle();
+    }
+
+    async function checkAuth() {
+      const data = await api('auth.php');
+      state.editor = !!data.loggedIn;
+      if (state.editor) document.body.classList.add('is-editor');
+      else document.body.classList.remove('is-editor');
+    }
+
+    async function saveEditor() {
+      if (!state.editor || !state.currentId) return;
+      el('edit-status').innerText = 'Menyimpan...';
+      const item = state.data.find(x => x.id_produk === state.currentId);
+      if (!item) return;
+      item.stok = Math.max(0, parseInt(el('edit-stok').value || '0', 10) || 0);
+      item.harga_grosir = Math.max(0, parseInt(el('edit-harga').value || '0', 10) || 0);
+      const payload = { data: state.data };
+      const res = await fetch(`${API_BASE}/inventory.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json().catch(() => ({}));
+      if (!res.ok || !result.ok) {
+        el('edit-status').innerText = 'Gagal simpan: ' + (result.error || res.statusText);
+        return;
+      }
+      el('edit-status').innerText = 'Tersimpan';
+      renderStats();
+      render();
+    }
+
+    async function uploadFoto() {
+      if (!state.editor || !state.currentId) return;
+      const fileInput = el('edit-foto');
+      const file = fileInput.files[0];
+      if (!file) return;
+      el('edit-status').innerText = 'Mengupload foto...';
+      const form = new FormData();
+      form.append('file', file);
+      form.append('id_produk', state.currentId);
+      const res = await fetch(`${API_BASE}/upload.php`, { method: 'POST', body: form });
+      const result = await res.json().catch(() => ({}));
+      if (!res.ok || !result.ok) {
+        el('edit-status').innerText = 'Gagal upload: ' + (result.error || res.statusText);
+        return;
+      }
+      const item = state.data.find(x => x.id_produk === state.currentId);
+      if (item) {
+        item.foto = result.url;
+        await saveEditor();
+      }
+      el('edit-status').innerText = 'Foto diperbarui';
+      if (item) {
+        el('modal-foto').src = item.foto;
+      }
+    }
 
     async function init() {
       setTheme(state.theme);
@@ -330,26 +439,44 @@
         applyFilters();
       });
 
+      el('btnLogin').addEventListener('click', () => el('modal_login').showModal());
+      el('login-close').addEventListener('click', () => el('modal_login').close());
+      el('login-submit').addEventListener('click', async () => {
+        const password = el('login-password').value || '';
+        const data = await api('auth.php', { method: 'POST', body: JSON.stringify({ password }) });
+        if (data.ok) {
+          el('login-status').innerText = 'Berhasil masuk';
+          el('modal_login').close();
+          await checkAuth();
+        } else {
+          el('login-status').innerText = data.error || 'Gagal';
+        }
+      });
+      el('btnLogout').addEventListener('click', async () => {
+        await fetch(`${API_BASE}/auth.php`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: '__logout__' }) });
+        await checkAuth();
+      });
+      el('edit-save').addEventListener('click', saveEditor);
+      el('edit-reset').addEventListener('click', () => {
+        const item = state.data.find(x => x.id_produk === state.currentId);
+        if (!item) return;
+        el('edit-stok').value = item.stok;
+        el('edit-harga').value = item.harga_grosir;
+        el('edit-status').innerText = '';
+      });
+      el('edit-foto').addEventListener('change', uploadFoto);
+
       try {
-        const res = await fetch('data/inventory.json');
-        if (!res.ok) throw new Error('Gagal memuat inventory');
-        state.data = await res.json();
-        renderStats();
-        renderChips();
-        state.filtered = getSorted(state.data);
-        viewToggle();
+        await loadData();
       } catch (err) {
         console.error(err);
-        el('hasilWrap').innerHTML = `
-          <div class="rounded-[2rem] bg-white border border-dashed border-stone-200 p-12 text-center">
-            <p class="text-2xl font-semibold">Data inventory gagal dimuat</p>
-            <p class="text-stone-500 mt-2">Pastikan file <code>data/inventory.json</code> tersedia di hosting.</p>
-          </div>`;
+        el('hasilWrap').innerHTML = `<div class="rounded-[2rem] bg-white border border-dashed border-stone-200 p-12 text-center"><p class="text-2xl font-semibold">Data inventory gagal dimuat</p><p class="text-stone-500 mt-2">Pastikan API inventory tersedia di hosting.</p></div>`;
       }
+
+      await checkAuth();
     }
 
     document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
-
